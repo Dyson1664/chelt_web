@@ -15,9 +15,7 @@ Day2
                     <div class="col-lg-6">
                         <h2>Style Wednesday</h2>
                         <p class="lead">The Cheltenham Festival is a horse racing-based meeting in the National Hunt racing calendar in the United Kingdom.</p>
-                        <p class="mb-0">The meeting features several Grade I races including the Cheltenham Gold Cup, Champion Hurdle, Queen Mother Champion Chase
-        and Stayers' Hurdle. Cheltenham is noted for its atmosphere, including the "Cheltenham roar", which refers to the enormous amount of noise that
-        the crowd generates as the starter raises the tape for the first race of the festival.</p>
+                        <p class="mb-0">Style Wednesday celebrates speed, style and exhilaration. Featuring the Queen Mother Champion chase, it is fast, furious, and requires a perfect blend of speed and an ability to be inch-perfect when negotiating each of the 13 fences at pace around Cheltenham’s legendary old course. The fastest Jump horses jumping at speed with the upmost precision and accuracy. It is simply spinetingling.</p>
                     </div>
                 </div>
             </div>
@@ -27,7 +25,7 @@ Day2
 
 
 {% block second_image %}
-<div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp2/images/day_pic.jpg' %}');">
+<div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp2/images/chelt4.jpg' %}'); height: 400px; background-size: cover; background-position: center -450px;">
     <div style="height: 20rem"></div>
     </div>
 
@@ -35,57 +33,63 @@ Day2
 
 {% block races_grid %}
 <<div class="container py-5"> <!-- Reduced padding in container -->
-    <h2 class="text-center">Day 1 Races</h2> <!-- Reduced margin below heading -->
+    <h2 class="text-center">Day 2 Races</h2> <!-- Reduced margin below heading -->
     <div class="table-responsive mx-auto" style="max-width: 800px;"> <!-- Removed py-5 from here -->
     <table class="table table-bordered mb-5">
 
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Race</th>
-                        <th>Runners</th>
-                        <th>Prize Money</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12:30 PM</td>
-                        <td>Supreme novices hurdle</td>
-                        <td>13</td>
-                        <td>$75,000</td>
-                    </tr>
-                    <tr> <!-- Start a new row for each set of data -->
-                        <td>1:00 PM</td>
-                        <td>The Arke</td>
-                        <td>5</td>
-                        <td>$85,000</td>
-                    </tr>
-                    <tr>
-                        <td>1:30 PM</td>
-                        <td>Handicap Chase</td>
-                        <td>16</td>
-                        <td>$60,000</td>
-                    </tr>
-                    <tr>
-                        <td>2:00 PM</td>
-                        <td>The Champion Hurdle</td>
-                        <td>8</td>
-                        <td>$120,000</td>
-                    </tr>
-                    <tr>
-                        <td>2:30 PM</td>
-                        <td>The Mares Hurdle</td>
-                        <td>12</td>
-                        <td>$55,000</td>
-                    </tr>
-                    <tr>
-                        <td>3:00 PM</td>
-                        <td>The National Hunt Chase</td>
-                        <td>8</td>
-                        <td>$60,000</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
+<thead>
+    <tr>
+        <th>Time</th>
+        <th>Race</th>
+        <th>Runners</th>
+        <th>Prize Money</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>1:30 PM</td>
+        <td>Ballymore Novices' Hurdle</td>
+        <td>8</td>
+        <td>£132,800 (2023)</td>
+    </tr>
+    <tr>
+        <td>2:10 PM</td>
+        <td>Brown Advisory Novices’ Chase</td>
+        <td>7</td>
+        <td>£178,480 (2023)</td>
+    </tr>
+    <tr>
+        <td>2:50 PM</td>
+        <td>Coral Cup Hurdle</td>
+        <td>14</td>
+        <td>£98,370 (2023)</td>
+    </tr>
+    <tr>
+        <td>3:30 PM</td>
+        <td>Queen Mother Champion Chase</td>
+        <td>6</td>
+        <td>£392,120 (2023)</td>
+    </tr>
+    <tr>
+        <td>4:10 PM</td>
+        <td>Glenfarclas Cross Country Chase</td>
+        <td>10</td>
+        <td>£65,000 (2023)</td>
+    </tr>
+    <tr>
+        <td>4:50 PM</td>
+        <td>Johnny Henderson Grand Annual Chase</td>
+        <td>14</td>
+        <td>£110,000 (2023)</td>
+    </tr>
+    <tr>
+        <td>5:30 PM</td>
+        <td>Weatherbys Champion Bumper</td>
+        <td>15</td>
+        <td>£75,000 (2023)</td>
+    </tr>
+    <!-- Add more rows as needed -->
+</tbody>
             </table>
         </div>
     </div>

@@ -7993,6 +7993,7 @@ textarea.form-control-lg {
 
 .text-center {
   text-align: center !important;
+
 }
 
 .text-decoration-none {
@@ -10853,7 +10854,7 @@ textarea.form-control-lg {
     font-weight: bold;
     text-align: center;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 5px;
 }
 
 .container1 {
@@ -10862,6 +10863,8 @@ textarea.form-control-lg {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 75px;
+    padding-bottom:75px;
 }
 .container2 {
     display: flex;
@@ -10869,12 +10872,13 @@ textarea.form-control-lg {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 150px;
+    padding-top: 75px;
+    padding-bottom:75px;
 }
 .images1 {
     height: 300px;
     width: 300px;
-    border: solid black 2px;
+    border: 2px solid black;
 
 }
 
