@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Website{% endblock %}</title>
+        {% load static %}
+
+        <link href="{% static 'myapp2/styles.css' %}" rel="stylesheet" />
+    <!-- Other head elements like meta tags, custom CSS, etc. -->
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day1' %}">Day 1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day2' %}">Day 2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day3' %}">Day 3</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day4' %}">Day 4</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'top5' %}">Top 5</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header - set the background image for the header in the line below-->
+         <header class="bg-image-full" style="background-image: url('{% static 'myapp2/images/cheltenham.jpg' %}'); height: 400px;">
+
+        </header>
+{% block info %}
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>The Cheltenham Festival</h2>
+                        <p class="lead">The Cheltenham Festival is a horse racing-based meeting in the National Hunt racing calendar in the United Kingdom.</p>
+                        <p class="mb-0">The meeting features several Grade I races including the Cheltenham Gold Cup, Champion Hurdle, Queen Mother Champion Chase
+        and Stayers' Hurdle. Cheltenham is noted for its atmosphere, including the "Cheltenham roar", which refers to the enormous amount of noise that
+        the crowd generates as the starter raises the tape for the first race of the festival.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+    <div class="box">Top Left</div>
+    <div class="box box-2">Top Right</div>
+    <div class="box">Bottom Left</div>
+    <div class="box">Bottom Right</div>
+    </div>
+</div>
+{% endblock %}
+<!-- Image element - set the background image for the header in the line below -->
+{% block second_image %}
+<div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp2/images/chelt4.jpg' %}'); height: 400px; background-size: cover; background-position: center -450px;">
+    <div style="height: 20rem"></div>
+</div>
+{% endblock %}
+
+
+{% block home_page %}
+
+<!--This block is for the second information paragraph on the home page-->
+{% endblock %}
+
+
+
+
+{% block races_grid %}
+    <!-- This block will be overridden by child templates -->
+{% endblock %}
+
+        {% block day1_page %}
+<!--This block is for the video on the day1 page-->
+{% endblock %}
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<script src="{% static 'myapp2/js/build-assets.js' %}"></script>
+<script src="{% static 'myapp2/js/build-pug.js' %}"></script>
+<script src="{% static 'myapp2/js/build-scripts.js' %}"></script>
+<script src="{% static 'myapp2/js/build-scss.js' %}"></script>
+<script src="{% static 'myapp2/js/clean.js' %}"></script>
+<script src="{% static 'myapp2/js/render-assets.js' %}"></script>
+<script src="{% static 'myapp2/js/render-pug.js' %}"></script>
+<script src="{% static 'myapp2/js/render-scripts.js' %}"></script>
+<script src="{% static 'myapp2/js/render-scss.js' %}"></script>
+<script src="{% static 'myapp2/js/sb-watch.js' %}"></script>
+<script src="{% static 'myapp2/js/start.js' %}"></script>
+<script src="{% static 'myapp2/js/start-debug.js' %}"></script>
+</body>
+</html>
