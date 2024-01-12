@@ -7992,7 +7992,7 @@ textarea.form-control-lg {
 }
 
 .text-center {
-  text-align: center !important;
+  text-align: center;
 
 }
 
@@ -10870,10 +10870,13 @@ textarea.form-control-lg {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    height: 400px;
+    border: solid black;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 75px;
     padding-bottom:75px;
+
 }
 .images1 {
     height: 300px;
@@ -10891,4 +10894,35 @@ textarea.form-control-lg {
 .f {
     padding-bottom: 15px;
 }
+
+
+
+.containerpop {
+    display: flex;
+    justify-content: space-between;
+    height: 700px;
+    width: 80%;
+    border: solid black 2px;
+}
+
+.firsttt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
+.boxpop {
+    display: flex;
+    height: 160px;
+    width: 160px;
+    border: solid red 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+
 

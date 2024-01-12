@@ -9,6 +9,15 @@ top 5
 
 
 {% block top5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Top 5</title>
+    <link href="{% static 'myapp2/styles.css' %}" rel="stylesheet" />
+    </head>
+<body>
 <div class="test">
     <h1>The Cheltenham Greats</h1>
 </div>
@@ -17,52 +26,55 @@ top 5
     <img class="images1" src="{% static 'myapp2/images/faugheen3.jfif' %}" alt="Cheltenham">
     <div class="one">
         <h2 class="f">Faugheen</h2>
-        <p>Faugheen (foaled 2 May 2008) is an Irish Thoroughbred racehorse best known for winning the 2015 Champion Hurdle and back-to-back Christmas Hurdles in 2014 and 2015. His best performance on a racecourse came in the 2016 Irish Champion Hurdle for which he was rated the best two-mile hurdler of the 21st century. His career started over Point-to-point fences as a four-year-old and was sent racing under National Hunt rules in the 2013/2014 season where he emerged as a leading Novice hurdler, winning all of his races including the Dorans Pride Novice Hurdle, Cheltenham Novices Hurdle and Herald Champion Novice Hurdle acquiring the nickname "The Machine" in the process.</p>
+        <p class="lead">Faugheen (foaled 2 May 2008) is an Irish Thoroughbred racehorse best known for winning the 2015 Champion Hurdle and back-to-back Christmas Hurdles in 2014 and 2015. His career started over Point-to-point fences as a four-year-old and was sent racing under National Hunt rules in the 2013/2014 season where he emerged as a leading Novice hurdler, winning all of his races including the Dorans Pride Novice Hurdle, Cheltenham Novices Hurdle and Herald Champion Novice Hurdle acquiring the nickname "The Machine" in the process.</p>
     </div>
     <img class="images1" src="{% static 'myapp2/images/faugheen4.jfif' %}" alt="Cheltenham">
 </div>
 
-<div class="container2">
+<div class="container1">
     <img class="images1" src="{% static 'myapp2/images/Quevega1.jfif' %}" alt="Cheltenham">
     <div class="one">
         <h2 class="f">Quevega</h2>
-        <p>Quevega (foaled 11 April 2004) is a retired French-bred Irish-trained National Hunt mare, best known for winning the David Nicholson Mares' Hurdle at the Cheltenham Festival a record six times in a row, beating the previous record set by Golden Miller's five consecutive Gold Cups in the 1930s. She also won the World Series Hurdle at Punchestown over three miles four times, but was beaten in her attempt at a fifth successive win at the 2014 Festival.</p>
+        <p class="lead">Quevega (foaled 11 April 2004) is a retired French-bred Irish-trained National Hunt mare, best known for winning the David Nicholson Mares' Hurdle at the Cheltenham Festival a record six times in a row, beating the previous record set by Golden Miller's five consecutive Gold Cups in the 1930s. She also won the World Series Hurdle at Punchestown over three miles four times, but was beaten in her attempt at a fifth successive win at the 2014 Festival.</p>
     </div>
     <img class="images1" src="{% static 'myapp2/images/Quevega2.jfif' %}" alt="Cheltenham">
 </div>
 
-<div class="container2">
+<div class="container1">
     <img class="images1" src="{% static 'myapp2/images/annie2.jfif' %}" alt="Cheltenham">
     <div class="one">
         <h2 class="f">Annie Power</h2>
-        <p>Annie Power (foaled 20 March 2008) is an Irish Thoroughbred racehorse. A National Hunt horse specialising in hurdle racing, she won fifteen of her seventeen races including the Johnstown Novice Hurdle, Irish Stallion Farms EBF Mares Novice Hurdle, Ascot Hurdle, Doncaster Mares' Hurdle and Mares Champion Hurdle. In 2016, she became the first mare for twenty two years to win the Champion Hurdle.</p>
+        <p class="lead">Annie Power (foaled 20 March 2008) is an Irish Thoroughbred racehorse. A National Hunt horse specialising in hurdle racing, she won fifteen of her seventeen races including the Johnstown Novice Hurdle, Irish Stallion Farms EBF Mares Novice Hurdle, Ascot Hurdle, Doncaster Mares' Hurdle and Mares Champion Hurdle. In 2016, she became the first mare for twenty two years to win the Champion Hurdle.</p>
     </div>
     <img class="images1" src="{% static 'myapp2/images/annie1.jfif' %}" alt="Cheltenham">
 </div>
 
-<div class="container2">
+<div class="container1">
     <img class="images1" src="{% static 'myapp2/images/sdb.jfif' %}" alt="Cheltenham">
     <div class="one">
         <h2 class="f">Sire Du Berlais</h2>
-        <p>Age has done anything but wither the 33-1 outsider Sire Du Berlais who graduated to championship glory in Thursday’s Paddy Power Stayers Hurdle at Cheltenham.
-Gordon Elliott’s veteran 11-year-old emulated the 1986 Stayers hero Crimson Embers by becoming the oldest winners of the gruelling marathon.
-The outcome eventually turned into a one-two for Elliott as his 9-4 favourite Teahupoo was promoted by the stewards to the runner up spot over Drashel Dasher (40-1) after interference at the last obstacle.
-For most punters the result was the wrong way around and hindsight merchants might be advised to let things cool before pointing out how Sire Du Berlais boasted impressive course and distance form having landed the Pertemps Final in both 2019 and 2020.</p>
+        <p class="lead">Age has done anything but wither the 33-1 outsider Sire Du Berlais who graduated to championship glory in Thursday’s Paddy Power Stayers Hurdle at Cheltenham.
+            Gordon Elliott’s veteran 11-year-old emulated the 1986 Stayers hero Crimson Embers by becoming the oldest winners of the gruelling marathon.
     </div>
     <img class="images1" src="{% static 'myapp2/images/sdb2.jfif' %}" alt="Cheltenham">
 </div>
 
-<div class="container2">
+<div class="container1">
     <img class="images1" src="{% static 'myapp2/images/vautour1.jfif' %}" alt="Cheltenham">
     <div class="one">
         <h2 class="f">Vautour</h2>
-        <p>Vautour (19 May 2009 – 6 November 2016) was a Thoroughbred racehorse who competed in National Hunt racing and won three times at the Cheltenham Festival. After beginning his racing career in France he moved to Ireland and made an immediate impact over hurdles in the spring of 2014 winning the Moscow Flyer Novice Hurdle, Deloitte Novice Hurdle, Supreme Novices' Hurdle and Tattersalls Champion Novice Hurdle.
-When moved up to compete in steeplechases he added wins in the Killiney Novice Chase, JLT Novices' Chase, 1965 Chase and Ryanair Chase as well as finishing a close second in the King George VI Chase. He died after a paddock accident on 6 November 2016 at the age of seven.</p>
+        <p class="lead">Vautour (19 May 2009 – 6 November 2016) was a Thoroughbred racehorse who competed in National Hunt racing and won three times at the Cheltenham Festival. After beginning his racing career in France he moved to Ireland and made an immediate impact over hurdles in the spring of 2014 winning the Moscow Flyer Novice Hurdle, Supreme Novices' Hurdle and Tattersalls Champion Novice Hurdle.
+                        When moved up to compete in steeplechases he added wins in the JLT Novices' Chase, 1965 Chase and Ryanair Chase.</p>
     </div>
     <img class="images1" src="{% static 'myapp2/images/vautour2.jfif' %}" alt="Cheltenham">
 </div>
 
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+</body>
+
+</html>
 {% endblock %}
 
 
