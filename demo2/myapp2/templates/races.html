@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+races
+{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="{% static 'myapp2/styles.css' %}" rel="stylesheet" />
+    <!-- Other head elements like meta tags, custom CSS, etc. -->
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day1' %}">Day 1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day2' %}">Day 2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day3' %}">Day 3</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'day4' %}">Day 4</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'top5' %}">Top 5</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'races' %}">Today's Races</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header - set the background image for the header in the line below-->
+         <header class="bg-image-full" style="background-image: url('{% static 'myapp2/images/cheltenham.jpg' %}'); height: 400px;">
+
+        </header>
+        {% block races %}
+<div>
+
+<div class="container-horse">
+{% for course, races in races_by_course.items %}
+    <div class="container-info">
+        <h1 class="title">Today's Jumps Racing</h1>
+    </div>
+    <h2 class="course">{{ course }}</h2>
+   {% for race in races %}
+                <p class="race-name"><span class="label">Race Name:</span> <span class="value">{{ race.race_name }}</span></p>
+                <p class="race-info">
+                    <span class="label">Start Time:</span> <span class="value">{{ race.start_time }}</span>
+                    <span class="label">Race Distance:</span> <span class="value">{{ race.race_distance }}</span>
+                    <span class="label">Region:</span> <span class="value">{{ race.region }}</span>
+                    <span class="label">Race Class:</span> <span class="value">{{ race.race_class }}</span>
+                    <span class="label">Type:</span> <span class="value">{{ race.type }}</span>
+                    <span class="label">Prize:</span> <span class="value">{{ race.prize }}</span>
+                    <span class="label">Field Size:</span> <span class="value">{{ race.field_size }}</span>
+                    <span class="label">Going:</span> <span class="value">{{ race.going }}</span>
+                </p>
+                <h4 class="runners">Runners:</h4>
+                {% for runner in race.runners %}
+                    <div class="runner">
+                        <p class="horse-name"><span class="label">Horse:</span> <span class="value">{{ runner.horse }}</span></p>
+                        <p class="horse"><span class="label">Trainer:</span> <span class="value">{{ runner.trainer }}</span></p>
+                        <p class="horse"><span class="label">Owner:</span> <span class="value">{{ runner.owner }}</span></p>
+                        <p class="horse"><span class="label">Jockey:</span> <span class="value">{{ runner.jockey }}</span></p>
+                        <p class="horse"><span class="label">Weight:</span> <span class="value">{{ runner.lbs }} lbs</span></p>
+                        <p class="horse"><span class="label">Number:</span> <span class="value">{{ runner.number }}</span></p>
+                        <p class="horse"><span class="label">Form:</span> <span class="value">{{ runner.form }}</span></p>
+                        <p class="horse"><span class="label">Age:</span> <span class="value">{{ runner.age }}</span></p>
+                        <p class="horse">**********************************</p>
+                    </div>
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

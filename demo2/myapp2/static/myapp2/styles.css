@@ -10924,5 +10924,113 @@ textarea.form-control-lg {
     margin: 5px;
 }
 
+.race-name {
+    text-align: center;
+    color: gray;
+    font-weight: bold
+    font-size: 40px;/* This sets the text color to pink */
+}
 
+.course {
+    text-align: center;
+    color: black;
+     padding-top: 0px;
+     padding-bottom: 10px;/* This sets the text color to pink */
+}
 
+.race-info {
+    text-align: center;
+    color: gray;
+    padding: 6px;
+    }
+
+.horse {
+    text-align: center;
+    color: black;
+     /* This sets the text color to pink */
+}
+
+.horse-name {
+    text-align: center;
+    color: black;
+
+     /* This sets the text color to pink */
+
+}
+
+.horse-name .value {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+   /* This ensures that both label and value in .horse-name have the same color */
+}
+
+.runners {
+    text-align: center;
+    color: #2F4F4F;
+    padding: 10px;
+     /* This sets the text color to pink */
+}
+
+.horse-info {
+    text-align: center;
+    color: gray;
+    padding: 10px;/* This sets the text color to pink */
+}
+
+.container-horse {
+    display:flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    border: solid black 2px;
+
+}
+
+.container-info {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Adjust this width as needed */
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.runner-info {
+    display:flex:
+    flex-direction: column;
+}
+
+.label {
+    color: gray;
+    padding: 2px;
+}
+
+.value {
+    color: #000000;
+    padding: 2px;
+}
+
+.race-name .value {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+
+}
+
+.title {
+    text-align: center;
+    color: #778899;
+    font-weight: bold;
+    font-size: 60px;
+    padding: 0px;
+    padding-top: 15px;
+}

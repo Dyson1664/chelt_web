@@ -1,5 +1,11 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
+from requests.auth import HTTPBasicAuth
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+
 
 def home(request):
     return render(request, "home.html")
@@ -26,16 +32,79 @@ def practice(request):
     return render(request, "practice.html")
 # Create your views here.
 
-def today(request):
-    url = requests.get("api.theracingapi.com/v1/racecards/free")
-    params = {}
-    response = requests.request("GET", url, auth=HTTPBasicAuth('USERNAME', 'PASSWORD'), params=params)
-    print(response.json())
 
-import requests
-from requests.auth import HTTPBasicAuth
+def find_races(request):
+    return render(request, "find_races.html")
+def races(request):
+    RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
+    RACING_API_PASSWORD = os.getenv('RACING_API_PASSWORD')
+    print(RACING_API_USERNAME, RACING_API_PASSWORD)
+    url = "https://api.theracingapi.com/v1/racecards/free"
+    params = {"day": "today"}
 
-url = "api.theracingapi.com/v1/racecards/free"
-params = {}
-response = requests.request("GET", url, auth=HTTPBasicAuth('USERNAME','PASSWORD'), params=params)
-print(response.json())
+    try:
+        response = requests.get(url, auth=HTTPBasicAuth(RACING_API_USERNAME, RACING_API_PASSWORD),
+                                params=params)
+        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+    except requests.RequestException as e:
+        # Handle any errors that occur during the request
+        return render(request, 'error.html', {'message': str(e)})
+
+    racecards = response.json().get('racecards', [])
+
+
+    races_by_course = {}
+
+    for race in racecards:
+        race_type = race.get('type')
+        if race_type in ["Hurdle", "Chase", "NH Flat"]:
+            course = race.get('course')
+            race_details = {
+                'race_name': race.get('race_name'),
+                'start_time': race.get('off_time'),
+                'race_distance': race.get('distance_f'),
+                'region': race.get('region'),
+                'race_class': race.get('race_class'),
+                'type': race.get('type'),
+                'prize': race.get('prize'),
+                'field_size': race.get('field_size'),
+                'going': race.get('going'),
+                'runners': []
+            }
+
+            for runner in race.get('runners', []):
+                runner_details = {
+                    'horse': runner.get('horse'),
+                    'age': runner.get('age'),
+                    'trainer': runner.get('trainer'),
+                    'owner': runner.get('owner'),
+                    'jockey': runner.get('jockey'),
+                    'lbs': runner.get('lbs'),
+                    'number': runner.get('number'),
+                    'form': runner.get('form'),
+                }
+
+                race_details['runners'].append(runner_details)
+
+            if course not in races_by_course:
+                races_by_course[course] = [race_details]
+            else:
+                races_by_course[course].append(race_details)
+    return render(request, 'races.html', {'races_by_course': races_by_course})
+
+#added function to get the racecards from the api
+
+    #
+    #
+    # for course, races in races_by_course.items():
+    #     print('Course: ', course)
+    #
+    #     for race in races:
+    #         print(
+    #             f"  Race Name: {race['race name']}, Start Time: {race['start time']}, Race Distance: {race['race distance']}, Region: {race['region']},"
+    #             f"Race Class: {race['race class']}, Type: {race['type']}, Prize: {race['prize']}, Field Size: {race['field size']}, Going: {race['going']} ")
+    #         for runner in race['runners']:
+    #             print(
+    #                 f"    Horse: {runner['horse']}, Age: {runner['age']}, Trainer: {runner['trainer']}, Owner: {runner['owner']}, Jockey: {runner['jockey']},"
+    #                 f"Weight: {runner['lbs']}, Number: {runner['number']}, Form: {runner['form']}")
+    #         print('\n')

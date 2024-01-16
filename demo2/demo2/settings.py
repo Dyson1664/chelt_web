@@ -123,9 +123,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import environ
-
-env = environ.Env()
-# Reading .env file
-environ.Env.read_env()
-

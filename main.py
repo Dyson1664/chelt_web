@@ -50,12 +50,14 @@ for race in racecards:
 
 for course, races in races_by_course.items():
     print('Course: ', course)
+
     for race in races:
         print(f"  Race Name: {race['race name']}, Start Time: {race['start time']}, Race Distance: {race['race distance']}, Region: {race['region']},"
-              f"Race Class: {race['race class']}, Type: {race['type']}, Prize: {race['prize']}, Field Size: {race['field size']}, Going: {race['going']}")
+              f"Race Class: {race['race class']}, Type: {race['type']}, Prize: {race['prize']}, Field Size: {race['field size']}, Going: {race['going']} ")
         for runner in race['runners']:
             print(f"    Horse: {runner['horse']}, Age: {runner['age']}, Trainer: {runner['trainer']}, Owner: {runner['owner']}, Jockey: {runner['jockey']},"
                   f"Weight: {runner['lbs']}, Number: {runner['number']}, Form: {runner['form']}")
+        print('\n')
 
 
 
@@ -77,66 +79,4 @@ for course, races in races_by_course.items():
 
 
 
-
-
-
-# for race in racecards:
-#     race_type = race.get('type')
-#     if race_type in ["Hurdle", "Chase", "NH Flat"]:
-#         course = race.get('course')
-#         race_details = {
-#         'Race name': race.get('race_name'),
-#         'Distance': race.get("distance_f"),
-#         'Prize': race.get("prize"),
-#         'Field size': race.get("field_size"),
-#         'Going': race.get("going"),
-#         "Runners": []
-#         }
-#         runners = race.get('runners', [])
-#         for runner in runners:
-#             horse = runner.get('horse')
-#             runner_details = {
-#             'Trainer': runner.get("trainer"),
-#             'Owner': runner.get("owner"),
-#             'Jockey': runner.get("jockey"),
-#             "Racing weight lbs": runner.get("lbs")
-#             }
-#             race_details['Runners'].append(runner_details)
-#
-#
-#
-#             if course not in dict:
-#                 dict[course] = [race_details]
-#             else:
-#                 dict[course].append(race_details)
-#
-#
-#             # if horse not in dict:
-#             #     dict2[horse] = [runner_details]
-#             # else:
-#             #     dict2[horse].append(runner_details)
-#
-# for place, info in dict.items():
-#     print(f'Course: {place}')
-#     for i in info:
-#         for k, v in i.items():
-#             print(f'{k}: {v}')
-#             # horse_info = i.get('Runners')
-#             # for horse in horse_info:
-#             #     print(horse)
-#
-#
-
-
-#
-#     print('\n')
-#
-# print('***********************************')
-#
-# for horse, info in dict2.items():
-#     print(f'Horse: {horse}')
-#     for i in info:
-#         for k, v in i.items():
-#             print(f'{k}: {v}')
-#     print('\n')
 
