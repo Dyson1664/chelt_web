@@ -6,10 +6,13 @@
 races
 {% endblock %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Page Title</title>
     <link href="{% static 'myapp2/styles.css' %}" rel="stylesheet" />
-    <!-- Other head elements like meta tags, custom CSS, etc. -->
+    <!-- Other head elements -->
 </head>
 <body>
 
@@ -41,6 +44,8 @@ races
 {% for course, races in races_by_course.items %}
     <div class="container-info">
         <h1 class="title">Today's Jumps Racing</h1>
+        <p class="date">{{ race_date }}</p>
+
     </div>
     <h2 class="course">{{ course }}</h2>
    {% for race in races %}

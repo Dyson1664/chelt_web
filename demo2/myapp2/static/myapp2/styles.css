@@ -11034,3 +11034,10 @@ textarea.form-control-lg {
     padding: 0px;
     padding-top: 15px;
 }
+
+.date {
+    font-weight: bold;
+    font-size: 30px;
+    color: #778899;
+
+    }

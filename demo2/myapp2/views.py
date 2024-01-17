@@ -51,6 +51,7 @@ def races(request):
         return render(request, 'error.html', {'message': str(e)})
 
     racecards = response.json().get('racecards', [])
+    date = racecards[0]['date'] if racecards else None
 
 
     races_by_course = {}
@@ -90,7 +91,7 @@ def races(request):
                 races_by_course[course] = [race_details]
             else:
                 races_by_course[course].append(race_details)
-    return render(request, 'races.html', {'races_by_course': races_by_course})
+    return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': date})
 
 #added function to get the racecards from the api
 
