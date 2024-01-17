@@ -30,9 +30,11 @@
          <header class="bg-image-full" style="background-image: url('{% static 'myapp2/images/cheltenham.jpg' %}'); height: 400px;">
 
         </header>
+        {% block results %}
         {% block top5 %}
         {% block races %}
-{% block info %}
+        {% block info %}
+
         <!-- Content section-->
         <section class="py-5">
             <div class="container my-5">
@@ -74,6 +76,8 @@
 {% endblock %}
    {% endblock %}
         {% endblock %}
+            {% endblock %}
+
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>

@@ -11041,3 +11041,114 @@ textarea.form-control-lg {
     color: #778899;
 
     }
+
+.container-winners {
+    display: flex;
+
+    border: solid black 2px;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    /*padding: 40px;
+    margin-bottom: 100px;
+    */
+}
+
+.h1winners {
+
+    text-align: center;
+    color: #778899;
+    font-weight: bold;
+    font-size: 60px;
+    padding: 50px;
+
+    }
+
+.days {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #778899;
+    font-size: 20px;
+
+    align-items: center;
+    border: solid black 2px;
+    height: 80px;
+    width: 200px;
+
+}
+
+.container-info {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid black 2px;
+    padding: 20px;
+    width: 100%; /* Adjust this width as needed */
+    height: 700px;
+    align-items: flex-end;
+
+
+   }
+
+
+.winners {
+    display: flex;
+    flex-direction: column;
+    border: solid black 2px;
+    width: 200px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ;
+
+    border: solid black 2px;
+    height: 700px;
+    width: 220px;
+    }

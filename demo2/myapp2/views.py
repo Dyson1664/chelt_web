@@ -93,6 +93,10 @@ def races(request):
                 races_by_course[course].append(race_details)
     return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': date})
 
+
+
+def results(request):
+    return render(request, "results.html")
 #added function to get the racecards from the api
 
     #
