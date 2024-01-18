@@ -11050,7 +11050,7 @@ textarea.form-control-lg {
 
     border: solid black 2px;
     width: 80%;
-    height: 400px;
+    height: 300px;
     margin: auto;
     margin-bottom: 100px;
 
@@ -11078,7 +11078,7 @@ textarea.form-control-lg {
     border: solid black 2px;
     padding: 20px;
     width: 100%; /* Adjust this width as needed */
-    height: 400px;
+    height: 300px;
     align-items: center;
    }
 
@@ -11088,7 +11088,7 @@ textarea.form-control-lg {
     flex-direction: column;
     border: solid black 2px;
     width: 200px;
-    height: 80px;
+    height: 60px;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -11103,10 +11103,10 @@ textarea.form-control-lg {
     align-items: center;
     margin-top: 20px;
     background: #F5F5F5;
+    height: 50px;
 
 
 }
-
 
 
 
@@ -11115,23 +11115,39 @@ textarea.form-control-lg {
 
 .container-res {
     display: flex;
-    flex-direction: column;
-    border: solid black 2px;
-    width: 80%;
-    height: 100%;
+    justify-content: center;
     align-items: center;
-    margin: auto;
+    width: 100%;
+    padding: 20px;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.results-table thead th {
+    background-color: #778899;
+    color: white;
+    padding: 10px;
+}
+
+.results-table th, .results-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.results-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
 }
 
 
-.first-place {
-    margin-left: 0; /* No indent for the first place */
+.results-table thead tr:first-child th {
+    border-bottom: none;
 }
 
-.second-place {
-    margin-left: 20px; /* Indent for the second place */
-}
 
-.third-place {
-    margin-left: 40px; /* Larger indent for the third place */
-}
+
+
