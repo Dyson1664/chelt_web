@@ -5,57 +5,99 @@
 {% block title %}
 results
 {% endblock %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your Page Title</title>
-    <link href="{% static 'myapp2/styles.css' %}" rel="stylesheet" />
-    <!-- Other head elements -->
-</head>
+
 {% block results %}
 <h1 class="h1winners">Previous Winners</h1>
 
 
 <div class="container-winners">
      <div class="container-info">
-         <p1 class="days">Day 1</p1>
-         <div>
-             <p1 class="winners">Supreme</p1>
-             <p1 class="winners">Arkle</p1>
-             <p1 class="winners">Champion Hurdle</p1>
-         </div>
-     </div>
-    <div class="container-info">
-         <p1 class="days">Day 2</p1>
-        <div>
-             <p1 class="winners">Ballymore</p1>
-             <p1 class="winners">RSA</p1>
-             <p1 class="winners">Champion Chase</p1>
-         </div>
-     </div>
-    <div class="container-info">
-         <p1 class="days">Day 3</p1>
-        <div>
-             <p1 class="winners">Turners</p1>
-             <p1 class="winners">Ryanair</p1>
-             <p1 class="winners">Stayers Hurdle</p1>
-         </div>
+         <p1 class="winners">Day 1</p1>
+         <form method="POST" action="{% url 'results' %}">
+        {% csrf_token %}
+        <button type="submit" class="winners winners1">Supreme</button>
+             <input type="hidden" name="race" value="supreme novices hurdle">
+             </form>
+<form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Arkle</button>
+            <input type="hidden" name="race" value="arkle">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Champion Hurdle</button>
+            <input type="hidden" name="race" value="champion_hurdle">
+        </form>
          </div>
     <div class="container-info">
-         <p1 class="days">Day 4</p1>
-        <div>
-             <p1 class="winners">Triumph</p1>
-             <p1 class="winners">Gold Cup</p1>
-             <p1 class="winners">Martin Pipe</p1>
-         </div>
-            </div>
+        <p1 class="winners">Day 2</p1>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Ballymore</button>
+            <input type="hidden" name="race" value="ballymore novices hurdle">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">RSA</button>
+            <input type="hidden" name="race" value="rsa">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Champion Chase</button>
+            <input type="hidden" name="race" value="queen mother champion chase">
+        </form>
+    </div>
+    <div class="container-info">
+        <p1 class="winners">Day 3</p1>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Turners</button>
+            <input type="hidden" name="race" value="turners novices chase">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Ryanair</button>
+            <input type="hidden" name="race" value="ryanair">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Stayers Hurdle</button>
+            <input type="hidden" name="race" value="stayers hurdle">
+        </form>
+    </div>
+    <div class="container-info">
+        <p1 class="winners">Day 4</p1>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Triumph</button>
+            <input type="hidden" name="race" value="triumph">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Gold Cup</button>
+            <input type="hidden" name="race" value="gold cup">
+        </form>
+        <form method="POST" action="{% url 'results' %}">
+            {% csrf_token %}
+            <button type="submit" class="winners winners1">Martin Pipe</button>
+            <input type="hidden" name="race" value="martin pipe">
+        </form>
+    </div>
 </div>
 
 
+<div class="container-res">
+    {% if rows %}
+        <div>
+            {% for row in rows %}
+                <p class="first-place">Year: {{ row.0 }} - 1st Horse: {{ row.1 }} - Jockey: {{ row.2 }} - Trainer: {{ row.3 }}</p>
+                <p class="second-place">Year: {{ row.0 }} - 2nd Horse: {{ row.4 }} - Jockey: {{ row.5 }} - Trainer: {{ row.6 }}</p>
+                <p class="third-place">Year: {{ row.0 }} - 3rd Horse: {{ row.7 }} - Jockey: {{ row.8 }} - Trainer: {{ row.9 }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
-
-</html>
 {% endblock %}
+
 
