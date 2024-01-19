@@ -10881,7 +10881,7 @@ textarea.form-control-lg {
 .images1 {
     height: 300px;
     width: 300px;
-    border: 2px solid black;
+    border: 2px solid #323643;
 
 }
 
@@ -11048,7 +11048,7 @@ textarea.form-control-lg {
 .container-winners {
     display: flex;
 
-    border: solid black 2px;
+
     width: 80%;
     height: 300px;
     margin: auto;
@@ -11062,7 +11062,7 @@ textarea.form-control-lg {
 .h1winners {
 
     text-align: center;
-    color: #778899;
+    color: black;
     font-weight: bold;
     font-size: 60px;
     padding: 50px;
@@ -11075,7 +11075,7 @@ textarea.form-control-lg {
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: solid black 2px;
+
     padding: 20px;
     width: 100%; /* Adjust this width as needed */
     height: 300px;
@@ -11086,29 +11086,38 @@ textarea.form-control-lg {
 .winners {
     display: flex;
     flex-direction: column;
-    border: solid black 2px;
+    color: #f3f3f3;
+    font-weight: bold;
     width: 200px;
     height: 60px;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: #778899;
-
+    background: #323643;
+    font-size: 20px
 }
 
 .winners1 {
+    background-color: #f3f3f3; /* Primary color */
+    color: #323643;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-center;
-    align-items: center;
-    margin-top: 20px;
-    background: #F5F5F5;
-    height: 50px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: none;
 
 
 }
 
-
+.winners1:hover {
+    background-color: #F0F8FF; /* Darker shade when hovered */
+    color: #6495ED; /* Lighter text color */
+}
 
 
 
@@ -11148,6 +11157,12 @@ textarea.form-control-lg {
     border-bottom: none;
 }
 
+.h2win {
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 50px;
 
 
+    }
+}
 

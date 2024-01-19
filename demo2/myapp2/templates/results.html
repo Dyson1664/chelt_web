@@ -7,7 +7,18 @@ results
 {% endblock %}
 
 {% block results %}
-<h1 class="h1winners">Previous Winners</h1>
+<!DOCTYPE html>
+<html>
+<head>
+
+        <link rel="stylesheet" href="{% static 'myapp2/css/styles.css' %}"> <!-- Your existing styles.css -->
+<!--        <link rel="stylesheet" href="{% static 'myapp2/css/bootstrap.min.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'myapp2/css/style.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'myapp2/css/owl.carousel.min.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'myapp2/css/styles.css' %}"> &lt;!&ndash; Your existing styles.css &ndash;&gt;-->
+    <!-- Other head elements like meta tags, custom CSS, etc. -->
+</head>
+<h1 class="h2win">Previous Winners</h1>
 
 
 <div class="container-winners">
@@ -84,48 +95,50 @@ results
         </form>
     </div>
 </div>
-
 <div class="container-res">
     {% if rows %}
-        <table class="results-table">
-            <thead>
-                <tr>
-                    <th>Year</th>
-                    <th colspan="3">1st Place</th>
-                    <th colspan="3">2nd Place</th>
-                    <th colspan="3">3rd Place</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th>Horse</th>
-                    <th>Jockey</th>
-                    <th>Trainer</th>
-                    <th>Horse</th>
-                    <th>Jockey</th>
-                    <th>Trainer</th>
-                    <th>Horse</th>
-                    <th>Jockey</th>
-                    <th>Trainer</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in rows %}
+        <div class="table-responsive"> <!-- Responsive table wrapper -->
+            <table class="table table-striped table-hover custom-table"> <!-- Bootstrap and custom classes -->
+                <thead>
                     <tr>
-                        <td>{{ row.0 }}</td>
-                        <td>{{ row.1 }}</td>
-                        <td>{{ row.2 }}</td>
-                        <td>{{ row.3 }}</td>
-                        <td>{{ row.4 }}</td>
-                        <td>{{ row.5 }}</td>
-                        <td>{{ row.6 }}</td>
-                        <td>{{ row.7 }}</td>
-                        <td>{{ row.8 }}</td>
-                        <td>{{ row.9 }}</td>
+                        <th>Year</th>
+                        <th colspan="3">1st Place</th>
+                        <th colspan="3">2nd Place</th>
+                        <th colspan="3">3rd Place</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    <tr>
+                        <th></th>
+                        <th>Horse</th>
+                        <th>Jockey</th>
+                        <th>Trainer</th>
+                        <th>Horse</th>
+                        <th>Jockey</th>
+                        <th>Trainer</th>
+                        <th>Horse</th>
+                        <th>Jockey</th>
+                        <th>Trainer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                        <tr>
+                            <td>{{ row.0 }}</td>
+                            <td>{{ row.1 }}</td>
+                            <td>{{ row.2 }}</td>
+                            <td>{{ row.3 }}</td>
+                            <td>{{ row.4 }}</td>
+                            <td>{{ row.5 }}</td>
+                            <td>{{ row.6 }}</td>
+                            <td>{{ row.7 }}</td>
+                            <td>{{ row.8 }}</td>
+                            <td>{{ row.9 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
 </div>
 {% endblock %}
+
 
