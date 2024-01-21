@@ -10898,19 +10898,26 @@ textarea.form-control-lg {
 
 
 .containerpop {
-    display: flex;
-    justify-content: space-between;
-    height: 700px;
-    width: 80%;
-    border: solid black 2px;
-}
+   display: flex;
+   flex-direction: column;
+   height: 800px;
+   width: 80%;
+   border: solid black 2px;
+   margin: auto;
+   justify-content: flex-end;
+   align-items: flex-end;
 
+}
+/*
 .firsttt {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: solid black 2px;
+    height: 200px;
+    width: 130px;
 }
-
+*/
 
 
 
@@ -10918,10 +10925,12 @@ textarea.form-control-lg {
     display: flex;
     height: 160px;
     width: 160px;
-    border: solid red 5px;
-    justify-content: center;
+    border: solid black 2px;
     align-items: center;
-    margin: 5px;
+    justify-content: center;
+
+
+
 }
 
 .race-name {
