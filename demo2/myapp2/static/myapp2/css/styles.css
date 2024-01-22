@@ -10899,26 +10899,35 @@ textarea.form-control-lg {
 
 .containerpop {
    display: flex;
-   flex-direction: column;
    height: 800px;
    width: 80%;
    border: solid black 2px;
    margin: auto;
-   justify-content: flex-end;
-   align-items: flex-end;
+
+
 
 }
-/*
-.firsttt {
+
+.first {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+
+    }
+
+
+.second {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: solid black 2px;
-    height: 200px;
-    width: 130px;
-}
-*/
+    align-items: flex-end;
+    margin-left: auto;
 
+}
+/* Why does margin-left: auto; work here?. Justify content: space B pushes the boxes apart vertically cause its set to column.
+Why then can i use align items: flex-end to push the boxes horizontally to the right?
+*/
 
 
 .boxpop {
