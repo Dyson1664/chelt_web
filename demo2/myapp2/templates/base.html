@@ -10,7 +10,6 @@
     <!-- Other head elements like meta tags, custom CSS, etc. -->
 </head>
 <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -22,17 +21,25 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'day3' %}">Day 3</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'day4' %}">Day 4</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'top5' %}">Top 5</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'races' %}">Today's Races</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'races' %}" id="races-link">Today's Races</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'results' %}">Results</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <!-- Header - set the background image for the header in the line below-->
-         <header class="bg-image-full" style="background-image: url('{% static 'myapp2/images/cheltenham.jpg' %}'); height: 400px;">
+<header class="bg-image-full" style="background-image: url('{% static 'myapp2/images/cheltenham.jpg' %}'); height: 400px;">
 
-        </header>
+</header>
+<div id="base-loading" style="display: none;">
+    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect class="spinner_9y7u" x="1" y="1" rx="1" width="10" height="10"/>
+        <rect class="spinner_9y7u spinner_DF2s" x="1" y="1" rx="1" width="10" height="10"/>
+        <rect class="spinner_9y7u spinner_q27e" x="1" y="1" rx="1" width="10" height="10"/>
+    </svg>
+</div>
+
+    </div>
         {% block results %}
         {% block top5 %}
         {% block races %}
@@ -44,9 +51,9 @@
         {% endblock %}
 <!-- Image element - set the background image for the header in the line below -->
 {% block second_image %}
-<div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp2/images/chelt4.jpg' %}'); height: 400px; background-size: cover; background-position: center -450px;">
-    <div style="height: 20rem"></div>
-</div>
+
+
+
 {% endblock %}
 
 
@@ -68,6 +75,7 @@
    {% endblock %}
         {% endblock %}
             {% endblock %}
+
 
 <footer class="py-5 bg-dark">
     <div class="container">
@@ -91,5 +99,26 @@
 <script src="{% static 'myapp2/js/sb-watch.js' %}"></script>
 <script src="{% static 'myapp2/js/start.js' %}"></script>
 <script src="{% static 'myapp2/js/start-debug.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var loadingDiv = document.getElementById('base-loading');
+        var racesLink = document.getElementById('races-link');
+
+        if (racesLink) {
+            racesLink.addEventListener('click', function() {
+                // Show the loading spinner
+                loadingDiv.style.display = 'block';
+            });
+        }
+    });
+
+    // Hide the spinner once everything is loaded
+    window.onload = function() {
+        var loadingDiv = document.getElementById('base-loading');
+        if (loadingDiv) {
+            loadingDiv.style.display = 'none';
+        }
+    };
+</script>
 </body>
 </html>

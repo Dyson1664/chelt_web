@@ -11182,5 +11182,94 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 
     }
+
+
+
+.meetingss {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    flex-wrap: wrap; /* Allow the items to wrap onto the next line */
+    justify-content: center; /* Horizontally center content within each meeting */
+
+    height: 800px;
+    width: 80%;
+    margin: auto;
+    border: 2px solid black;
+    margin-bottom: 100px;
+    margin-top: 100px;
 }
 
+.meeting {
+    display: flex;
+    width: 100px; /* Width of each item */
+    height: 70px;
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+}
+
+.meeting-names {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 200px;
+    border: 2px solid black;
+
+
+
+}
+
+.meeting-times {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+    align-items: center;
+    align-content: center;
+    height: 900px;
+    width: 700px;
+    border: 2px solid black;
+}
+
+.meeting-row {
+    display: flex; /* Make each row a flex container */
+    flex-direction: row; /* Align items horizontally */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+/* Style for the loading container */
+#base-loading {
+    display: none; /* Hidden by default */
+    position: relative; /* Adjust as needed */
+    text-align: center; /* Center horizontally */
+    padding: 20px 0; /* Add some space above and below the spinner */
+}
+
+/* Styles for the SVG spinner */
+.spinner_9y7u {
+    animation: spinner_fUkk 2.4s linear infinite;
+    animation-delay: -2.4s;
+}
+
+.spinner_DF2s {
+    animation-delay: -1.6s;
+}
+
+.spinner_q27e {
+    animation-delay: -0.8s;
+}
+
+@keyframes spinner_fUkk {
+    8.33% { x: 13px; y: 1px }
+    25% { x: 13px; y: 1px }
+    33.3% { x: 13px; y: 13px }
+    50% { x: 13px; y: 13px }
+    58.33% { x: 1px; y: 13px }
+    75% { x: 1px; y: 13px }
+    83.33% { x: 1px; y: 1px }
+}

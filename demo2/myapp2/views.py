@@ -31,7 +31,9 @@ def base(request):
 
 def practice(request):
     return render(request, "practice.html")
-# Create your views here.
+
+def test(request):
+    return render(request, "apitest.html")
 
 
 def find_races(request):
