@@ -10949,12 +10949,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     font-size: 40px;/* This sets the text color to pink */
 }
 
-.course {
-    text-align: center;
-    color: black;
-     padding-top: 0px;
-     padding-bottom: 10px;/* This sets the text color to pink */
-}
+
 
 .race-info {
     text-align: center;
@@ -10996,19 +10991,6 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     padding: 10px;/* This sets the text color to pink */
 }
 
-.container-horse {
-    display:flex;
-    flex-direction: column;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-
-    align-items: center;
-    width: 80%;
-    height: 100%;
-    border: solid black 2px;
-
-}
 
 .container-information {
     display:flex;
@@ -11050,16 +11032,17 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     font-weight: bold;
     font-size: 60px;
     padding: 0px;
-    padding-top: 15px;
+    padding-top: 25px;
 }
 
 .date {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     font-weight: bold;
     font-size: 30px;
-    color: #778899;
-    text-align: center;
+    color: black;
+    padding-top: 25px;
+
 
     }
 
@@ -11272,4 +11255,72 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     58.33% { x: 1px; y: 13px }
     75% { x: 1px; y: 13px }
     83.33% { x: 1px; y: 1px }
+}
+
+
+
+.race-list {
+    list-style-type: none;
+    padding: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+}
+
+.race-location {
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 40px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.race-location:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+
+
+
+
+.container-horse {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    border: solid red 2px;
+}
+
+
+.course-row {
+    display: flex;
+    align-items: center; /* Add this line */
+    justify-content: space-between;
+
+    width: 80%;
+    border: 1px solid blue;
+    padding-left: 80px;
+    padding-right: 300px;
+}
+
+
+.race-times {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    font-size: 20px;
+    padding-left: 40px;
+    background: yellow;
+
+
+}
+
+.time {
+    display: flex;
+    justify-content: flex-end;
 }

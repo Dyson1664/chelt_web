@@ -6,8 +6,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+import pytz
+from django.utils import timezone
 
-
+from datetime import datetime, timedelta
+from django.core.cache import cache
+from django.http import HttpResponse
 def home(request):
     return render(request, "home.html")
 
@@ -38,63 +42,106 @@ def test(request):
 
 def find_races(request):
     return render(request, "find_races.html")
+
+# def races(request):
+#     RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
+#     RACING_API_PASSWORD = os.getenv('RACING_API_PASSWORD')
+#     print(RACING_API_USERNAME, RACING_API_PASSWORD)
+#     url = "https://api.theracingapi.com/v1/racecards/free"
+#     params = {"day": "today"}
+#
+#     try:
+#         response = requests.get(url, auth=HTTPBasicAuth(RACING_API_USERNAME, RACING_API_PASSWORD),
+#                                 params=params)
+#         response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+#     except requests.RequestException as e:
+#         # Handle any errors that occur during the request
+#         return render(request, 'error.html', {'message': str(e)})
+#
+#     racecards = response.json().get('racecards', [])
+#     date = racecards[0]['date'] if racecards else None
+#     courses = []
+#     for race in racecards:
+#         race_type = race.get('type')
+#         if race_type in ["Hurdle", "Chase", "NH Flat"]:
+#             course = race.get('course')
+#             if course not in courses:
+#                 courses.append(course)
+#
+#
+#     return render(request, 'races.html', {'courses': courses, 'race_date': date})
+
+
 def races(request):
     RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
     RACING_API_PASSWORD = os.getenv('RACING_API_PASSWORD')
-    print(RACING_API_USERNAME, RACING_API_PASSWORD)
-    url = "https://api.theracingapi.com/v1/racecards/free"
-    params = {"day": "today"}
 
-    try:
-        response = requests.get(url, auth=HTTPBasicAuth(RACING_API_USERNAME, RACING_API_PASSWORD),
-                                params=params)
-        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
-    except requests.RequestException as e:
-        # Handle any errors that occur during the request
-        return render(request, 'error.html', {'message': str(e)})
+    # Create a unique key for caching based on the current date
+    today = datetime.now().astimezone(pytz.timezone("Europe/London")).date()
+    cache_key = f'races_data_{today}'
 
-    racecards = response.json().get('racecards', [])
-    date = racecards[0]['date'] if racecards else None
+    # Check if the data is already in the cache
+    races_by_course = cache.get(cache_key)
+
+    if races_by_course is None:
+        # Data not in cache, fetch from API
+        try:
+            url = "https://api.theracingapi.com/v1/racecards/free"
+            params = {"day": "today"}
+            response = requests.get(url, auth=HTTPBasicAuth(RACING_API_USERNAME, RACING_API_PASSWORD), params=params)
+            response.raise_for_status()
+            racecards = response.json().get('racecards', [])
+
+            races_by_course = {}
+            for race in racecards:
+                race_type = race.get('type')
+                if race_type in ["Hurdle", "Chase", "NH Flat"]:
+                    course = race.get('course')
+                    race_details = {
+                        'race_name': race.get('race_name'),
+                        'start_time': race.get('off_time'),
+                        'race_distance': race.get('distance_f'),
+                        'region': race.get('region'),
+                        'race_class': race.get('race_class'),
+                        'type': race.get('type'),
+                        'prize': race.get('prize'),
+                        'field_size': race.get('field_size'),
+                        'going': race.get('going'),
+                        'runners': []
+                    }
+                    for runner in race.get('runners', []):
+                        runner_details = {
+                            'horse': runner.get('horse'),
+                            'age': runner.get('age'),
+                            'trainer': runner.get('trainer'),
+                            'owner': runner.get('owner'),
+                            'jockey': runner.get('jockey'),
+                            'lbs': runner.get('lbs'),
+                            'number': runner.get('number'),
+                            'form': runner.get('form'),
+                        }
+                        race_details['runners'].append(runner_details)
+
+                    if course not in races_by_course:
+                        races_by_course[course] = [race_details]
+                    else:
+                        races_by_course[course].append(race_details)
 
 
-    races_by_course = {}
+            now = timezone.now()
 
-    for race in racecards:
-        race_type = race.get('type')
-        if race_type in ["Hurdle", "Chase", "NH Flat"]:
-            course = race.get('course')
-            race_details = {
-                'race_name': race.get('race_name'),
-                'start_time': race.get('off_time'),
-                'race_distance': race.get('distance_f'),
-                'region': race.get('region'),
-                'race_class': race.get('race_class'),
-                'type': race.get('type'),
-                'prize': race.get('prize'),
-                'field_size': race.get('field_size'),
-                'going': race.get('going'),
-                'runners': []
-            }
+            # 'midnight' should be the start of the next day, timezone-aware
+            midnight = datetime.combine(now.date() + timedelta(days=1), datetime.min.time())
+            midnight = timezone.make_aware(midnight, pytz.timezone("Europe/London"))
+            seconds_until_midnight = (midnight - now).seconds
 
-            for runner in race.get('runners', []):
-                runner_details = {
-                    'horse': runner.get('horse'),
-                    'age': runner.get('age'),
-                    'trainer': runner.get('trainer'),
-                    'owner': runner.get('owner'),
-                    'jockey': runner.get('jockey'),
-                    'lbs': runner.get('lbs'),
-                    'number': runner.get('number'),
-                    'form': runner.get('form'),
-                }
 
-                race_details['runners'].append(runner_details)
+            # Cache the data until midnight
+            cache.set(cache_key, races_by_course, timeout=seconds_until_midnight)
+        except requests.RequestException as e:
+            return render(request, 'error.html', {'message': str(e)})
 
-            if course not in races_by_course:
-                races_by_course[course] = [race_details]
-            else:
-                races_by_course[course].append(race_details)
-    return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': date})
+    return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': today})
 
 
 def results(request):
@@ -133,19 +180,14 @@ def results(request):
 
     # Render the same template whether it's POST or GET
     return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
-#added function to get the racecards from the api
 
-    #
-    #
-    # for course, races in races_by_course.items():
-    #     print('Course: ', course)
-    #
-    #     for race in races:
-    #         print(
-    #             f"  Race Name: {race['race name']}, Start Time: {race['start time']}, Race Distance: {race['race distance']}, Region: {race['region']},"
-    #             f"Race Class: {race['race class']}, Type: {race['type']}, Prize: {race['prize']}, Field Size: {race['field size']}, Going: {race['going']} ")
-    #         for runner in race['runners']:
-    #             print(
-    #                 f"    Horse: {runner['horse']}, Age: {runner['age']}, Trainer: {runner['trainer']}, Owner: {runner['owner']}, Jockey: {runner['jockey']},"
-    #                 f"Weight: {runner['lbs']}, Number: {runner['number']}, Form: {runner['form']}")
-    #         print('\n')
+import time
+def test_cache(request):
+    cached_data = cache.get('my_data')
+
+    if not cached_data:
+        # Generate new data with a timestamp
+        cached_data = f"Hello, Memurai! Time: {time.ctime()}"
+        cache.set('my_data', cached_data, timeout=60)  # Cache for 60 seconds
+
+    return HttpResponse(cached_data)

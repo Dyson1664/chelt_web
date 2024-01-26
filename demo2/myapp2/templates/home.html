@@ -23,7 +23,12 @@ Home
         </section>
 </div>
 {% endblock %}
+{% block second_image %}
+<div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp2/images/chelt4.jpg' %}'); height: 400px; background-size: cover; background-position: center -450px;">
+    <div style="height: 20rem"></div>
+    </div>
 
+{% endblock %}
 {% block home_page %}
 
 <!--            &lt;!&ndash; Put anything you want here! The spacer below with inline CSS is just for demo purposes!&ndash;&gt;        <div class="py-5 bg-image-full" style="background-image: url('{% static 'myapp/images/chelt4.jpg' %}'); height: 400px; background-size: cover; background-position: center -450px;">-->

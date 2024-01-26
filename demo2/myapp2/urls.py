@@ -12,7 +12,8 @@ urlpatterns = [
     path("practice/", views.practice, name="practice"),
     path("races/", views.races, name="races"),
     path('results/', views.results, name='results'),
-    path('test/', views.test, name='test')
+    path('test/', views.test, name='test'),
+    path('test-cache/', views.test_cache, name='test_cache')
 
 ]
 
