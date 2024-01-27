@@ -25,16 +25,24 @@ function formatRaceDetails(data) {
 }
 </script>
 
-<!--<div id="race-details"></div>-->
+<script>
+function toggleRaceDetails(element, raceId) {
+    // Get the placeholder element
+    var placeholder = document.getElementById('dropdown-placeholder-' + raceId);
 
-<!-- races.html -->
-<!--<div class="race-list">-->
-<!--    {% for course in courses %}-->
-<!--        <div class="race-location" data-location="{{ course }}" onclick="fetchRaceDetails('{{ course }}')">-->
-<!--            {{ course }}-->
-<!--        </div>-->
-<!--    {% endfor %}-->
-<!--</div>-->
+    // Check if the race details are already displayed
+    if (placeholder.innerHTML.trim() !== '') {
+        // If displayed, hide them
+        placeholder.innerHTML = '';
+    } else {
+        // If not displayed, show the race details
+        placeholder.innerHTML = '<div class="race-details">Race details content here for ' + raceId + '</div>';
+    }
+}
+
+
+</script>
+
 <h1 class="title">Today's Jumps Racing</h1>
 <h2 class="date">{{ race_date }}</h2>
 <div class="container-horse">
@@ -43,10 +51,15 @@ function formatRaceDetails(data) {
             <h2 class="course">{{ course }}</h2>
             <div class="race-times">
                 {% for race in races %}
-                    <span class="time">{{ race.start_time }}</span>
+                    <div class="race-time-container">
+                        <span class="time" onclick="toggleRaceDetails(this, '{{ race.race_id }}')">{{ race.start_time }}</span>
+                    </div>
                 {% endfor %}
             </div>
         </div>
-    {% endfor %}  <!-- Close the for loop -->
+        <!-- Placeholder for dropdown -->
+        <div id="dropdown-placeholder-{{ course }}"></div>
+    {% endfor %}
 </div>
-{% endblock %}  <!-- Close the block -->
+{% endblock %}
+

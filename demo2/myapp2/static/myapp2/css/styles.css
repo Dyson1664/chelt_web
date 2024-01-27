@@ -11300,21 +11300,28 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 .course-row {
     display: flex;
     align-items: center; /* Add this line */
-    justify-content: space-between;
+
 
     width: 80%;
     border: 1px solid blue;
     padding-left: 80px;
-    padding-right: 300px;
+    position: relative;
 }
 
+.course {
+    display: flex;
+    align-items: center; /* Add this line */
+    width: 400px; /* Width of each item */
+    background: yellow;
+}
 
 .race-times {
     display: flex;
     justify-content: flex-end;
-    gap: 30px;
+    gap: 20px;
     font-size: 20px;
-    padding-left: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+
     background: yellow;
 
 
@@ -11323,4 +11330,20 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 .time {
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
+}
+
+.race-details {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    display: none;
+    position: absolute;
+    top: 100%; /* Position it right below the time */
+    left: 0;
+    width: 100%; /* Adjust the width as needed */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1;
+    /* Add more styles as needed */
 }
