@@ -25,21 +25,6 @@ function formatRaceDetails(data) {
 }
 </script>
 
-<!--<script>-->
-<!--function toggleRaceDetails(element, raceNameSlug) {-->
-<!--    var placeholder = document.getElementById('dropdown-placeholder-' + raceNameSlug);-->
-
-<!--    if (placeholder.style.display === 'block') {-->
-<!--        placeholder.style.display = 'none';-->
-<!--    } else {-->
-<!--        placeholder.style.display = 'block';-->
-<!--        placeholder.innerHTML = '<div class="race-details">Details for ' + raceNameSlug + '</div>';-->
-<!--        // Populate with actual race details-->
-<!--    }-->
-<!--}-->
-
-<!--</script>-->
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const raceLinks = document.querySelectorAll('.racecourse a[data-toggle="collapse"]');
@@ -47,16 +32,28 @@ document.addEventListener("DOMContentLoaded", function() {
     raceLinks.forEach(function(link) {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            const raceDetailDiv = document.getElementById(this.getAttribute('href').substring(1));
-            if (raceDetailDiv.classList.contains('show')) {
-                raceDetailDiv.classList.remove('show');
-            } else {
-                raceDetailDiv.classList.add('show');
-            }
+
+            // Close all open race details except for the clicked one
+            const clickedRaceDetailId = this.getAttribute('href').substring(1);
+            const allRaceDetails = document.querySelectorAll('.racecourse .collapse');
+            allRaceDetails.forEach(function(detail) {
+                if (detail.id !== clickedRaceDetailId) {
+                    detail.classList.remove('show');
+                }
+            });
+
+            // Toggle the clicked race detail
+            const raceDetailDiv = document.getElementById(clickedRaceDetailId);
+            raceDetailDiv.classList.toggle('show');
         });
     });
 });
+
+
 </script>
+
+<h1 class="h1title">Today's Jumps Races (UK & Ireland)</h1>
+
 <div class="container-horse">
     {% for course, races in races_by_course.items %}
         <div class="racecourse">
@@ -79,24 +76,32 @@ document.addEventListener("DOMContentLoaded", function() {
             <!-- Race Details -->
             {% for race in races %}
                 <div class="collapse" id="{{ race.race_name_slug }}">
-                    <div class="card card-body text-center">
+                    <div class="card card-body text-center race-details">
                         <!-- Race details as before -->
-                        <p class="fw-semibold fs-5">Race Name: {{ race.race_name }}</p>
+                        <p class="fw-bold fs-3 p-3">{{ race.race_name }}  ({{race.race_type }})</p>
                         <div class="race-box">
-                            <ul>
-                                <li>Starters: {{ race.field_size }} Distance: {{ race.race_distance }} Age: {{ race.age_band }}</li>
-                                <li>Prize: {{ race.prize }} Going: {{ race.going }} Class: {{ race.race_class }}</li>
-                            </ul>
-                        </div>
-
+                        <ul>
+                            <li class="mb-3">
+                                <span class="race-detail"><strong>Starters:</strong> {{ race.field_size }}</span>
+                                <span class="race-detail"><strong>Distance:</strong> {{ race.race_distance }} </span>
+                                <span class="race-detail"><strong>Age:</strong> {{ race.age_band }}</span>
+                            </li>
+                            <li class="mb-4 pb-3">
+                                <span class="race-detail"><strong>Prize:</strong> {{ race.prize }}</span>
+                                <span class="race-detail"><strong>Going:</strong> {{ race.going }}</span>
+                                <span class="race-detail"><strong>Class:</strong> {{ race.race_class }}</span>
+                            </li>
+                        </ul>
+                    </div>
                         <!-- Runner Details Table -->
                         <table>
-                            <thead>
+                            <thead class="backtable">
                                 <tr>
-                                    <th>Horse Number</th>
+                                    <th>No.</th>
                                     <th>Horse</th>
+                                    <th>Form</th>
                                     <th>Age</th>
-                                    <th>Weight</th>
+                                    <th>Lbs</th>
                                     <th>Jockey</th>
                                     <th>Trainer</th>
                                 </tr>
@@ -105,7 +110,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                 {% for runner in race.runners %}
                                     <tr>
                                         <td>{{ runner.number }}</td>
-                                        <td>{{ runner.horse }}</td>
+                                        <td class="horsefont">{{ runner.horse }}</tdclass>
+                                        <td>{{ runner.form }}</td>
                                         <td>{{ runner.age }}</td>
                                         <td>{{ runner.lbs }}</td>
                                         <td>{{ runner.jockey }}</td>

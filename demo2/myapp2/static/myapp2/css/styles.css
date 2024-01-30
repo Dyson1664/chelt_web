@@ -11259,22 +11259,30 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .container-horse {
 
-    padding-top: 120px;    /* Adjust the value as needed */
+    padding-top: 70px;    /* Adjust the value as needed */
     padding-bottom: 100px;
 
 
 }
 
 .racecourse {
-    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px; /* Add some padding below the content before the line */
+    margin-bottom: 15px;
 
+}
+
+.racecourse::after {
+    content: '';
+    position: absolute;
+    left: 19%; /* Adjust this value based on where the course name starts */
+    bottom: 0;
+    width: 60%; /* This width should be enough to extend the line to the end */
+    border-bottom: 1px solid #ddd;
 }
 
 .race-time-link {
     margin-right: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -11283,9 +11291,8 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 }
 
 .race-time-link:hover, .race-time-link:focus {
-    color: #0056b3;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
+    color: black;
+    text-decoration:underline;
 }
 
 .card {
@@ -11303,15 +11310,41 @@ body {
 
 .race-box ul {
     list-style-type: none; /* Removes bullet points */
-    padding: 0;           /* Removes default padding */
-    margin: 0;            /* Removes default margin */
+    padding: 0;            /* Removes default padding */
+    margin: 0;             /* Removes default margin */
 }
 
 .race-box li {
-    display: block;
-    margin-bottom: 5px;   /* Optional: Adds space between list items */
+    margin-bottom: 5px;    /* Adds space between list items */
+
 }
 
+.race-detail {
+    margin-right: 15px; /* Adjust the value as needed */
+}
+
+.h1title {
+    text-align: center;
+    padding-top: 80px;
+    font-size: 30px;
+}
+
+.race-details {
+    padding-bottom: 40px; /* Adjust this value as per your design */
+}
+
+.backtable {
+    background: #ddd;
+    font-size: 18px;
 
 
+}
 
+.horsefont {
+     font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* 700 is the weight for bold in Roboto */
+    }
+
+table th {
+    padding: 6px; /* Adjust the value as needed */
+}

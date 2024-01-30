@@ -44,6 +44,20 @@ def test(request):
 def find_races(request):
     return render(request, "find_races.html")
 
+def format_distance(distance_furlongs):
+    if distance_furlongs is None:
+        return "Unknown distance"
+
+    try:
+        # Convert to float and calculate miles and furlongs
+        total_furlongs = float(distance_furlongs)
+        miles = int(total_furlongs // 8)
+        furlongs = int(total_furlongs % 8)
+
+        # Format the result
+        return f"{miles}m {furlongs}f" if miles > 0 else f"{furlongs}f"
+    except ValueError:
+        return "Invalid distance"
 
 def races(request):
     RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
@@ -71,11 +85,12 @@ def races(request):
                 if race_type in ["Hurdle", "Chase", "NH Flat"]:
                     course = race.get('course')
                     race_name_slug = slugify(race.get('race_name'))
-                    print(race_name_slug)
+                    distance_str = race.get('distance_f')
+                    formatted_distance = format_distance(distance_str)
                     race_details = {
                         'race_name': race.get('race_name'),
                         'start_time': race.get('off_time'),
-                        'race_distance': race.get('distance_f'),
+                        'race_distance': formatted_distance,
                         'region': race.get('region'),
                         'race_class': race.get('race_class'),
                         'type': race.get('type'),
@@ -83,6 +98,7 @@ def races(request):
                         'field_size': race.get('field_size'),
                         'going': race.get('going'),
                         'age_band': race.get('age_band'),
+                        'race_type': race_type,
                         'race_name_slug': race_name_slug,
                         'runners': []
                     }
@@ -158,6 +174,39 @@ def results(request):
     # Render the same template whether it's POST or GET
     return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
 
+# from django.http import JsonResponse
+# import psycopg2
+# import json
+#
+# def results(request):
+#     # Initialize data structure
+#     data = {'rows': [], 'error': None}
+#
+#     if request.method == 'POST' and request.is_ajax():
+#         race = json.loads(request.body).get('race')
+#         try:
+#             # Connect to your database
+#             conn = psycopg2.connect(
+#                 dbname="results",
+#                 user="postgres",
+#                 password="1234567890",
+#                 host="localhost"
+#             )
+#             cur = conn.cursor()
+#             query = f"SELECT * FROM winners WHERE race = %s;"
+#             cur.execute(query, [race])  # Use parameterized queries to prevent SQL injection
+#             data['rows'] = cur.fetchall()
+#             cur.close()
+#             conn.close()
+#         except psycopg2.DatabaseError as error:
+#             data['error'] = str(error)
+#
+#         return JsonResponse(data)
+#
+#     # For non-Ajax requests, render the template as before
+#     return render(request, 'results.html', data)
+
+
 import time
 def test_cache(request):
     cached_data = cache.get('my_data')
@@ -169,5 +218,3 @@ def test_cache(request):
 
     return HttpResponse(cached_data)
 
-from django.core.cache import cache
-cache.clear()
