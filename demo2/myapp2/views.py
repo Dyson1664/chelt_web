@@ -12,6 +12,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from django.core.cache import cache
 from django.http import HttpResponse
+from django.utils.text import slugify
 def home(request):
     return render(request, "home.html")
 
@@ -43,34 +44,6 @@ def test(request):
 def find_races(request):
     return render(request, "find_races.html")
 
-# def races(request):
-#     RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
-#     RACING_API_PASSWORD = os.getenv('RACING_API_PASSWORD')
-#     print(RACING_API_USERNAME, RACING_API_PASSWORD)
-#     url = "https://api.theracingapi.com/v1/racecards/free"
-#     params = {"day": "today"}
-#
-#     try:
-#         response = requests.get(url, auth=HTTPBasicAuth(RACING_API_USERNAME, RACING_API_PASSWORD),
-#                                 params=params)
-#         response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
-#     except requests.RequestException as e:
-#         # Handle any errors that occur during the request
-#         return render(request, 'error.html', {'message': str(e)})
-#
-#     racecards = response.json().get('racecards', [])
-#     date = racecards[0]['date'] if racecards else None
-#     courses = []
-#     for race in racecards:
-#         race_type = race.get('type')
-#         if race_type in ["Hurdle", "Chase", "NH Flat"]:
-#             course = race.get('course')
-#             if course not in courses:
-#                 courses.append(course)
-#
-#
-#     return render(request, 'races.html', {'courses': courses, 'race_date': date})
-
 
 def races(request):
     RACING_API_USERNAME = os.getenv('RACING_API_USERNAME')
@@ -97,6 +70,8 @@ def races(request):
                 race_type = race.get('type')
                 if race_type in ["Hurdle", "Chase", "NH Flat"]:
                     course = race.get('course')
+                    race_name_slug = slugify(race.get('race_name'))
+                    print(race_name_slug)
                     race_details = {
                         'race_name': race.get('race_name'),
                         'start_time': race.get('off_time'),
@@ -107,6 +82,8 @@ def races(request):
                         'prize': race.get('prize'),
                         'field_size': race.get('field_size'),
                         'going': race.get('going'),
+                        'age_band': race.get('age_band'),
+                        'race_name_slug': race_name_slug,
                         'runners': []
                     }
                     for runner in race.get('runners', []):
@@ -191,3 +168,6 @@ def test_cache(request):
         cache.set('my_data', cached_data, timeout=60)  # Cache for 60 seconds
 
     return HttpResponse(cached_data)
+
+from django.core.cache import cache
+cache.clear()

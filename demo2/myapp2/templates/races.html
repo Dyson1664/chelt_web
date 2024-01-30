@@ -25,40 +25,99 @@ function formatRaceDetails(data) {
 }
 </script>
 
+<!--<script>-->
+<!--function toggleRaceDetails(element, raceNameSlug) {-->
+<!--    var placeholder = document.getElementById('dropdown-placeholder-' + raceNameSlug);-->
+
+<!--    if (placeholder.style.display === 'block') {-->
+<!--        placeholder.style.display = 'none';-->
+<!--    } else {-->
+<!--        placeholder.style.display = 'block';-->
+<!--        placeholder.innerHTML = '<div class="race-details">Details for ' + raceNameSlug + '</div>';-->
+<!--        // Populate with actual race details-->
+<!--    }-->
+<!--}-->
+
+<!--</script>-->
+
 <script>
-function toggleRaceDetails(element, raceId) {
-    // Get the placeholder element
-    var placeholder = document.getElementById('dropdown-placeholder-' + raceId);
+document.addEventListener("DOMContentLoaded", function() {
+    const raceLinks = document.querySelectorAll('.racecourse a[data-toggle="collapse"]');
 
-    // Check if the race details are already displayed
-    if (placeholder.innerHTML.trim() !== '') {
-        // If displayed, hide them
-        placeholder.innerHTML = '';
-    } else {
-        // If not displayed, show the race details
-        placeholder.innerHTML = '<div class="race-details">Race details content here for ' + raceId + '</div>';
-    }
-}
-
-
+    raceLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const raceDetailDiv = document.getElementById(this.getAttribute('href').substring(1));
+            if (raceDetailDiv.classList.contains('show')) {
+                raceDetailDiv.classList.remove('show');
+            } else {
+                raceDetailDiv.classList.add('show');
+            }
+        });
+    });
+});
 </script>
-
-<h1 class="title">Today's Jumps Racing</h1>
-<h2 class="date">{{ race_date }}</h2>
 <div class="container-horse">
     {% for course, races in races_by_course.items %}
-        <div class="course-row">
-            <h2 class="course">{{ course }}</h2>
-            <div class="race-times">
-                {% for race in races %}
-                    <div class="race-time-container">
-                        <span class="time" onclick="toggleRaceDetails(this, '{{ race.race_id }}')">{{ race.start_time }}</span>
-                    </div>
-                {% endfor %}
+        <div class="racecourse">
+            <div class="row align-items-center justify-content-center">
+                <!-- Course Name Column -->
+                <div class="col-md-3 text-center">
+                    <h3>{{ course }}</h3>
+                </div>
+
+                <!-- Race Times Column -->
+                <div class="col-md-6 text-start">
+                    {% for race in races %}
+                        <a href="#{{ race.race_name_slug }}" data-toggle="collapse" aria-expanded="false" class="race-time-link">
+                            {{ race.start_time }}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
+
+            <!-- Race Details -->
+            {% for race in races %}
+                <div class="collapse" id="{{ race.race_name_slug }}">
+                    <div class="card card-body text-center">
+                        <!-- Race details as before -->
+                        <p class="fw-semibold fs-5">Race Name: {{ race.race_name }}</p>
+                        <div class="race-box">
+                            <ul>
+                                <li>Starters: {{ race.field_size }} Distance: {{ race.race_distance }} Age: {{ race.age_band }}</li>
+                                <li>Prize: {{ race.prize }} Going: {{ race.going }} Class: {{ race.race_class }}</li>
+                            </ul>
+                        </div>
+
+                        <!-- Runner Details Table -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Horse Number</th>
+                                    <th>Horse</th>
+                                    <th>Age</th>
+                                    <th>Weight</th>
+                                    <th>Jockey</th>
+                                    <th>Trainer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for runner in race.runners %}
+                                    <tr>
+                                        <td>{{ runner.number }}</td>
+                                        <td>{{ runner.horse }}</td>
+                                        <td>{{ runner.age }}</td>
+                                        <td>{{ runner.lbs }}</td>
+                                        <td>{{ runner.jockey }}</td>
+                                        <td>{{ runner.trainer }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        <!-- Placeholder for dropdown -->
-        <div id="dropdown-placeholder-{{ course }}"></div>
     {% endfor %}
 </div>
 {% endblock %}
