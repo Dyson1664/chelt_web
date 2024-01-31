@@ -13,6 +13,10 @@ from datetime import datetime, timedelta
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.utils.text import slugify
+
+from django.http import JsonResponse
+import json
+
 def home(request):
     return render(request, "home.html")
 
@@ -174,9 +178,6 @@ def races(request):
 #     # Render the same template whether it's POST or GET
 #     return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
 
-from django.http import JsonResponse
-import psycopg2
-import json
 
 def results(request):
     data = {'rows': [], 'error': None}

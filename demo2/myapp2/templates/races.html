@@ -51,8 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 </script>
-
 <h1 class="h1title">Today's Jumps Races (UK & Ireland)</h1>
+<h5 class='text-center mt-4'> {{ race_date }}</h5>
+
 
 <div class="container-horse">
     {% for course, races in races_by_course.items %}
