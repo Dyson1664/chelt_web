@@ -3,142 +3,150 @@
 {% load static %}
 
 {% block title %}
-results
+results_test
 {% endblock %}
 
 {% block results %}
 <!DOCTYPE html>
 <html>
 <head>
-
-        <link rel="stylesheet" href="{% static 'myapp2/css/styles.css' %}"> <!-- Your existing styles.css -->
-
+    <link rel="stylesheet" href="{% static 'myapp2/css/styles.css' %}">
 </head>
-<h1 class="h2win">Previous Winners</h1>
+<body>
+    <h1 class="h2win">Previous Winners</h1>
 
-
-<div class="container-winners">
-     <div class="container-info">
-         <p1 class="winners">Day 1</p1>
-         <form method="POST" action="{% url 'results' %}">
-        {% csrf_token %}
-        <button type="submit" class="winners winners1">Supreme</button>
-             <input type="hidden" name="race" value="supreme novices hurdle">
-             </form>
-<form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Arkle</button>
-            <input type="hidden" name="race" value="arkle">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Champion Hurdle</button>
-            <input type="hidden" name="race" value="champion_hurdle">
-        </form>
-         </div>
-    <div class="container-info">
-        <p1 class="winners">Day 2</p1>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Ballymore</button>
-            <input type="hidden" name="race" value="ballymore novices hurdle">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">RSA</button>
-            <input type="hidden" name="race" value="rsa">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Champion Chase</button>
-            <input type="hidden" name="race" value="queen mother champion chase">
-        </form>
-    </div>
-    <div class="container-info">
-        <p1 class="winners">Day 3</p1>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Turners</button>
-            <input type="hidden" name="race" value="turners novices chase">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Ryanair</button>
-            <input type="hidden" name="race" value="ryanair">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Stayers Hurdle</button>
-            <input type="hidden" name="race" value="stayers hurdle">
-        </form>
-    </div>
-    <div class="container-info">
-        <p1 class="winners">Day 4</p1>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Triumph</button>
-            <input type="hidden" name="race" value="triumph">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Gold Cup</button>
-            <input type="hidden" name="race" value="gold cup">
-        </form>
-        <form method="POST" action="{% url 'results' %}">
-            {% csrf_token %}
-            <button type="submit" class="winners winners1">Martin Pipe</button>
-            <input type="hidden" name="race" value="martin pipe">
-        </form>
-    </div>
-</div>
-<div class="container-res">
-    {% if rows %}
-        <div class="table-responsive"> <!-- Responsive table wrapper -->
-            <table class="table table-striped table-hover custom-table"> <!-- Bootstrap and custom classes -->
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th colspan="3">1st Place</th>
-                        <th colspan="3">2nd Place</th>
-                        <th colspan="3">3rd Place</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>Horse</th>
-                        <th>Jockey</th>
-                        <th>Trainer</th>
-                        <th>Horse</th>
-                        <th>Jockey</th>
-                        <th>Trainer</th>
-                        <th>Horse</th>
-                        <th>Jockey</th>
-                        <th>Trainer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in rows %}
-                        <tr>
-                            <td>{{ row.0 }}</td>
-                            <td>{{ row.1 }}</td>
-                            <td>{{ row.2 }}</td>
-                            <td>{{ row.3 }}</td>
-                            <td>{{ row.4 }}</td>
-                            <td>{{ row.5 }}</td>
-                            <td>{{ row.6 }}</td>
-                            <td>{{ row.7 }}</td>
-                            <td>{{ row.8 }}</td>
-                            <td>{{ row.9 }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="container-winners">
+        <!-- Day 1 Races -->
+        <div class="container-info">
+            <p class="winners">Day 1</p>
+            <button class="winners winners1" data-race="supreme novices hurdle">Supreme</button>
+            <button class="winners winners1" data-race="arkle">Arkle</button>
+            <button class="winners winners1" data-race="champion_hurdle">Champion Hurdle</button>
         </div>
-    {% endif %}
-</div>
+
+        <!-- Day 2 Races -->
+        <div class="container-info">
+            <p class="winners">Day 2</p>
+            <button class="winners winners1" data-race="ballymore novices hurdle">Ballymore</button>
+            <button class="winners winners1" data-race="rsa">RSA</button>
+            <button class="winners winners1" data-race="queen mother champion chase">Champion Chase</button>
+        </div>
+
+        <!-- Day 3 Races -->
+        <div class="container-info">
+            <p class="winners">Day 3</p>
+            <button class="winners winners1" data-race="turners novices chase">Turners</button>
+            <button class="winners winners1" data-race="ryanair">Ryanair</button>
+            <button class="winners winners1" data-race="stayers hurdle">Stayers Hurdle</button>
+        </div>
+
+        <!-- Day 4 Races -->
+        <div class="container-info">
+            <p class="winners">Day 4</p>
+            <button class="winners winners1" data-race="triumph">Triumph</button>
+            <button class="winners winners1" data-race="gold cup">Gold Cup</button>
+            <button class="winners winners1" data-race="martin pipe">Martin Pipe</button>
+        </div>
+    </div>
+
+    <div class="container-res" id="results-container">
+        <!-- Results will be displayed here -->
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.winners1');  // Select all your race buttons
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            var raceValue = this.getAttribute('data-race'); // Retrieve the race value
+
+            // Send a POST request to your Django view
+            fetch('{% url 'results' %}', {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ race: raceValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                } else {
+                    updateResultsTable(data.rows);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});
+
+function updateResultsTable(rows) {
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = ''; // Clear existing content
+    if (!rows.length) {
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+        return;
+    }
+
+    const table = document.createElement('table');
+    table.className = 'table table-striped table-hover custom-table';
+
+    // Creating the first header row
+    const thead = document.createElement('thead');
+    const headerRow1 = document.createElement('tr');
+    const yearHeader = document.createElement('th');
+    yearHeader.textContent = 'Year';
+    yearHeader.rowSpan = 2; // Span through two rows
+    headerRow1.appendChild(yearHeader);
+
+    // Creating placeholders for 1st, 2nd, and 3rd places
+    const placeHeaders = ['1st Place', '2nd Place', '3rd Place'];
+    placeHeaders.forEach(place => {
+        const th = document.createElement('th');
+        th.textContent = place;
+        th.colSpan = 3; // Span across three columns for each place
+        headerRow1.appendChild(th);
+    });
+
+    thead.appendChild(headerRow1);
+
+    // Creating the second header row
+    const headerRow2 = document.createElement('tr');
+    for (let i = 0; i < 3; i++) { // For each place
+        ['Horse', 'Jockey', 'Trainer'].forEach(role => {
+            const th = document.createElement('th');
+            th.textContent = role;
+            headerRow2.appendChild(th);
+        });
+    }
+
+    thead.appendChild(headerRow2);
+    table.appendChild(thead);
+
+    // Creating the tbody with data
+    const tbody = document.createElement('tbody');
+    rows.forEach(row => {
+        const tr = document.createElement('tr');
+        // Here, ensure you're adjusting according to the actual data structure received
+        row.slice(0, -2).forEach(cell => { // Adjust this line if necessary to remove unwanted data
+            const td = document.createElement('td');
+            td.textContent = cell;
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    resultsContainer.appendChild(table);
+}
+    </script>
+</body>
+</html>
 {% endblock %}
-
-
-
-
-
-

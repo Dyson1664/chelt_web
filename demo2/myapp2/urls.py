@@ -13,7 +13,7 @@ urlpatterns = [
     path("races/", views.races, name="races"),
     path('results/', views.results, name='results'),
     path('test/', views.test, name='test'),
-    path('test-cache/', views.test_cache, name='test_cache')
+    path('test-cache/', views.test_cache, name='test_cache'),
 
 ]
 

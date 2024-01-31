@@ -137,53 +137,12 @@ def races(request):
     return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': today})
 
 
-def results(request):
-    rows = []  # Initialize rows outside the if block
-    error_message = None
-
-    if request.method == 'POST':
-        race = request.POST.get('race')
-        try:
-            # Connect to your database
-            conn = psycopg2.connect(
-                dbname="results",
-                user="postgres",
-                password="1234567890",
-                host="localhost"
-            )
-
-            # Open a cursor to perform database operations
-            cur = conn.cursor()
-
-            # Define your query here
-            query = f"SELECT * FROM winners WHERE race = '{race}';"
-
-            # Execute the query
-            cur.execute(query)
-            rows = cur.fetchall()
-
-
-            # Close communication with the database
-            cur.close()
-            conn.close()
-
-        except psycopg2.DatabaseError as error:
-            print(error)
-            error_message = error
-
-    # Render the same template whether it's POST or GET
-    return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
-
-# from django.http import JsonResponse
-# import psycopg2
-# import json
-#
 # def results(request):
-#     # Initialize data structure
-#     data = {'rows': [], 'error': None}
+#     rows = []  # Initialize rows outside the if block
+#     error_message = None
 #
-#     if request.method == 'POST' and request.is_ajax():
-#         race = json.loads(request.body).get('race')
+#     if request.method == 'POST':
+#         race = request.POST.get('race')
 #         try:
 #             # Connect to your database
 #             conn = psycopg2.connect(
@@ -192,19 +151,58 @@ def results(request):
 #                 password="1234567890",
 #                 host="localhost"
 #             )
+#
+#             # Open a cursor to perform database operations
 #             cur = conn.cursor()
-#             query = f"SELECT * FROM winners WHERE race = %s;"
-#             cur.execute(query, [race])  # Use parameterized queries to prevent SQL injection
-#             data['rows'] = cur.fetchall()
+#
+#             # Define your query here
+#             query = f"SELECT * FROM winners WHERE race = '{race}';"
+#
+#             # Execute the query
+#             cur.execute(query)
+#             rows = cur.fetchall()
+#
+#
+#             # Close communication with the database
 #             cur.close()
 #             conn.close()
+#
 #         except psycopg2.DatabaseError as error:
-#             data['error'] = str(error)
+#             print(error)
+#             error_message = error
 #
-#         return JsonResponse(data)
-#
-#     # For non-Ajax requests, render the template as before
-#     return render(request, 'results.html', data)
+#     # Render the same template whether it's POST or GET
+#     return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
+
+from django.http import JsonResponse
+import psycopg2
+import json
+
+def results(request):
+    data = {'rows': [], 'error': None}
+
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        try:
+            race = json.loads(request.body).get('race')
+            # Database connection and query execution
+            with psycopg2.connect(
+                dbname="results",
+                user="postgres",
+                password="1234567890",
+                host="localhost"
+            ) as conn:
+                with conn.cursor() as cur:
+                    query = "SELECT * FROM winners WHERE race = %s;"
+                    cur.execute(query, [race])
+                    data['rows'] = cur.fetchall()
+        except psycopg2.DatabaseError as error:
+            data['error'] = str(error)
+
+        return JsonResponse(data)
+
+    # For non-AJAX requests or other methods, redirect or show an error
+    return render(request, 'results.html', data)
+
 
 
 import time
