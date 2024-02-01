@@ -166,6 +166,6 @@ def results(request):
     # For non-AJAX requests or other methods, redirect or show an error
     return render(request, 'results.html', data)
 
-
+#ok done
 
 
