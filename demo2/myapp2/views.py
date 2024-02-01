@@ -141,44 +141,6 @@ def races(request):
     return render(request, 'races.html', {'races_by_course': races_by_course, 'race_date': today})
 
 
-# def results(request):
-#     rows = []  # Initialize rows outside the if block
-#     error_message = None
-#
-#     if request.method == 'POST':
-#         race = request.POST.get('race')
-#         try:
-#             # Connect to your database
-#             conn = psycopg2.connect(
-#                 dbname="results",
-#                 user="postgres",
-#                 password="1234567890",
-#                 host="localhost"
-#             )
-#
-#             # Open a cursor to perform database operations
-#             cur = conn.cursor()
-#
-#             # Define your query here
-#             query = f"SELECT * FROM winners WHERE race = '{race}';"
-#
-#             # Execute the query
-#             cur.execute(query)
-#             rows = cur.fetchall()
-#
-#
-#             # Close communication with the database
-#             cur.close()
-#             conn.close()
-#
-#         except psycopg2.DatabaseError as error:
-#             print(error)
-#             error_message = error
-#
-#     # Render the same template whether it's POST or GET
-#     return render(request, 'results.html', {'rows': rows, 'error_message': error_message})
-
-
 def results(request):
     data = {'rows': [], 'error': None}
 
@@ -206,14 +168,4 @@ def results(request):
 
 
 
-import time
-def test_cache(request):
-    cached_data = cache.get('my_data')
-
-    if not cached_data:
-        # Generate new data with a timestamp
-        cached_data = f"Hello, Memurai! Time: {time.ctime()}"
-        cache.set('my_data', cached_data, timeout=60)  # Cache for 60 seconds
-
-    return HttpResponse(cached_data)
 

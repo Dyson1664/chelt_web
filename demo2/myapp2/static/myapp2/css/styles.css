@@ -10838,9 +10838,9 @@ textarea.form-control-lg {
 
 
 .video-container {
-    display: flex;             /* Enable Flexbox */
-    justify-content: center;   /* Center the video horizontally */
-    align-items: center;       /* Center the video vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-bottom: 100px;
 
 }
@@ -10882,7 +10882,6 @@ textarea.form-control-lg {
     height: 300px;
     width: 300px;
     border: 2px solid #323643;
-
 }
 
 .one {
@@ -10903,17 +10902,12 @@ textarea.form-control-lg {
    width: 80%;
    border: solid black 2px;
    margin: auto;
-
-
-
 }
 
 .first {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-
-
     }
 
 
@@ -10925,10 +10919,6 @@ textarea.form-control-lg {
     margin-left: auto;
 
 }
-/* Why does margin-left: auto; work here?. Justify content: space B pushes the boxes apart vertically cause its set to column.
-Why then can i use align items: flex-end to push the boxes horizontally to the right?
-*/
-
 
 .boxpop {
     display: flex;
@@ -10946,7 +10936,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     text-align: center;
     color: gray;
     font-weight: bold
-    font-size: 40px;/* This sets the text color to pink */
+    font-size: 40px;
 }
 
 
@@ -10960,14 +10950,11 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 .horse {
     text-align: center;
     color: black;
-     /* This sets the text color to pink */
 }
 
 .horse-name {
     text-align: center;
     color: black;
-
-     /* This sets the text color to pink */
 
 }
 
@@ -10975,20 +10962,19 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     color: black;
     font-weight: bold;
     font-size: 20px;
-   /* This ensures that both label and value in .horse-name have the same color */
 }
 
 .runners {
     text-align: center;
     color: #2F4F4F;
     padding: 10px;
-     /* This sets the text color to pink */
+
 }
 
 .horse-info {
     text-align: center;
     color: gray;
-    padding: 10px;/* This sets the text color to pink */
+    padding: 10px;
 }
 
 
@@ -10996,7 +10982,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     display:flex;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Adjust this width as needed */
+    width: 100%;
     margin: auto;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -11055,9 +11041,6 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     margin: auto;
     margin-bottom: 100px;
 
-    /*padding: 40px;
-    margin-bottom: 100px;
-    */
 }
 
 .h1winners {
@@ -11078,7 +11061,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
     justify-content: flex-start;
 
     padding: 20px;
-    width: 100%; /* Adjust this width as needed */
+    width: 100%;
     height: 300px;
     align-items: center;
    }
@@ -11099,7 +11082,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 }
 
 .winners1 {
-    background-color: #f3f3f3; /* Primary color */
+    background-color: #f3f3f3;
     color: #323643;
     border: none;
     padding: 10px 20px;
@@ -11116,8 +11099,8 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 }
 
 .winners1:hover {
-    background-color: #F0F8FF; /* Darker shade when hovered */
-    color: #6495ED; /* Lighter text color */
+    background-color: #F0F8FF;
+    color: #6495ED;
 }
 
 
@@ -11170,9 +11153,9 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .meetingss {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    flex-wrap: wrap; /* Allow the items to wrap onto the next line */
-    justify-content: center; /* Horizontally center content within each meeting */
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
 
     height: 800px;
     width: 80%;
@@ -11184,7 +11167,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .meeting {
     display: flex;
-    width: 100px; /* Width of each item */
+    width: 100px;
     height: 70px;
     border: 2px solid black;
     justify-content: center;
@@ -11193,7 +11176,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .meeting-names {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 400px;
@@ -11219,21 +11202,20 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 }
 
 .meeting-row {
-    display: flex; /* Make each row a flex container */
-    flex-direction: row; /* Align items horizontally */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Style for the loading container */
+
 #base-loading {
-    display: none; /* Hidden by default */
-    position: relative; /* Adjust as needed */
-    text-align: center; /* Center horizontally */
-    padding: 20px 0; /* Add some space above and below the spinner */
+    display: none;
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
 }
 
-/* Styles for the SVG spinner */
 .spinner_9y7u {
     animation: spinner_fUkk 2.4s linear infinite;
     animation-delay: -2.4s;
@@ -11259,7 +11241,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .container-horse {
 
-    padding-top: 70px;    /* Adjust the value as needed */
+    padding-top: 70px;
     padding-bottom: 100px;
 
 
@@ -11267,7 +11249,7 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 
 .racecourse {
     position: relative;
-    padding-bottom: 15px; /* Add some padding below the content before the line */
+    padding-bottom: 15px;
     margin-bottom: 15px;
 
 }
@@ -11275,9 +11257,9 @@ Why then can i use align items: flex-end to push the boxes horizontally to the r
 .racecourse::after {
     content: '';
     position: absolute;
-    left: 19%; /* Adjust this value based on where the course name starts */
+    left: 19%;
     bottom: 0;
-    width: 60%; /* This width should be enough to extend the line to the end */
+    width: 60%;
     border-bottom: 1px solid #ddd;
 }
 
@@ -11309,18 +11291,17 @@ body {
 }
 
 .race-box ul {
-    list-style-type: none; /* Removes bullet points */
-    padding: 0;            /* Removes default padding */
-    margin: 0;             /* Removes default margin */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .race-box li {
-    margin-bottom: 5px;    /* Adds space between list items */
-
+    margin-bottom: 5px;
 }
 
 .race-detail {
-    margin-right: 15px; /* Adjust the value as needed */
+    margin-right: 15px;
 }
 
 .h1title {
@@ -11330,7 +11311,7 @@ body {
 }
 
 .race-details {
-    padding-bottom: 40px; /* Adjust this value as per your design */
+    padding-bottom: 40px;
 }
 
 .backtable {
@@ -11342,9 +11323,9 @@ body {
 
 .horsefont {
      font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* 700 is the weight for bold in Roboto */
+    font-weight: 700;
     }
 
 table th {
-    padding: 6px; /* Adjust the value as needed */
+    padding: 6px;
 }
