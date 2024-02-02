@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECRET_KEY = 'django-insecure-93&09yatz)5kh@*q7xeo@i$(#b89i!i&(%%bav^txmfa$4m@t+'
@@ -81,15 +83,13 @@ WSGI_APPLICATION = 'demo2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+
+import dj_database_url
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'results',
-        'USER': 'postgres',
-        'PASSWORD': '1234567890',
-        'HOST': 'localhost',   # Set to empty string for localhost.
-        'PORT': '',            # Set to empty string for default.
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
