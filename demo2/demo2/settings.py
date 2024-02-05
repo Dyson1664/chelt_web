@@ -27,8 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECRET_KEY = 'django-insecure-93&09yatz)5kh@*q7xeo@i$(#b89i!i&(%%bav^txmfa$4m@t+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
+# DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['cheltenham.onrender.com', '127.0.0.1']
 
@@ -82,8 +82,6 @@ WSGI_APPLICATION = 'demo2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
 
 import dj_database_url
 
