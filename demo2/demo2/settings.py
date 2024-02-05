@@ -53,7 +53,7 @@ LOGGING = {
 # DEBUG = True
 # DEBUG = 'RENDER' not in os.environ
 DEBUG = False
-ALLOWED_HOSTS = ['cheltenham.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['https://cheltenham.onrender.com', 'localhost', '127.0.0.1']
 
 #     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
