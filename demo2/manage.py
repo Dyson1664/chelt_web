@@ -1,3 +1,4 @@
+#This need to be in the root directory on github to deploy
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
